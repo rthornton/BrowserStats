@@ -1,6 +1,12 @@
 (ns BrowserAnalysis.core)
 
-(defn -main
-  "I don't do a whole lot."
-  [& args]
-  (println "Hello, World!"))
+(use '(incanter core charts excel stats))
+
+; Working without percentage.
+(defn main [& args]
+ (with-data
+   (read-xls "browsersSimple.xls")
+   (let [sum (sum ($ :Total))
+         percentage (map #(/ 100 %1) $)]
+     (str percentage))
+))
