@@ -7,6 +7,6 @@
  (with-data
    (read-xls "browsersSimple.xls")
    (let [sum (sum ($ :Total))
-         percentage (map #(/ 100 %1) $)]
-     (str percentage))
+         percentage (map #(/ %1 sum) ($ :Total))]
+     (view (xy-plot (range 1 100) percentage)))
 ))
